@@ -34,9 +34,20 @@ header nav a.active::after{width:100%;}
 @keyframes typing{from{width:0ch;}to{width:var(--text-length);}}
 @keyframes blink{50%{border-color:transparent;}}
 .fade-in{opacity:0;transform:translateY(20px);transition:opacity .8s ease-out,transform .8s ease-out;}
+/* FORCE section heading gradient - overrides inline styles */
+h2{
+  background:linear-gradient(135deg,#06b6d4 0%,#ec4899 100%) !important;
+  -webkit-background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  background-clip:text !important;
+  color:transparent !important;
+  font-weight:700 !important;
+  text-align:center !important;
+  margin-bottom:20px !important;
+}
 .show{opacity:1;transform:translateY(0);}
 .skills,.projects,.contact,.about{padding:clamp(40px,8vw,80px) 20px;text-align:center;}
-.skill-list{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:20px;margin-left:0;}
+.skill-list{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:20px;margin-left:6px;}
 .skill{padding:12px 20px;background:#161b22;border-radius:10px;border:1px solid #30363d;transition:0.3s;font-size:clamp(14px,3vw,18px);}
 .skill:hover{transform:scale(1.05);border-color:#58a6ff;}
 .project-box{padding:clamp(15px,2vw,25px);background:#161b22;border-radius:10px;width:90%;max-width:600px;margin:15px auto;border:1px solid #30363d;color:#ccc;}
@@ -97,6 +108,15 @@ body.light-mode .footer-options i{color:#333 !important;}
   .project-box{width:95%;padding:15px;}
   .about-content{font-size:16px;line-height:1.6;}
 }
+/* Section headings - CHANGE COLORS HERE */
+.section-heading{
+  background:linear-gradient(135deg,#06b6d4 0%,#ec4899 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  font-weight:700;
+  text-align:center;
+}
 section{scroll-margin-top:60px;}
 </style>
 </head>
@@ -122,8 +142,15 @@ section{scroll-margin-top:60px;}
 </header>
 
 <svg class="side-border" width="65" height="100%" viewBox="0 0 80 1000" preserveAspectRatio="none" aria-hidden="true">
-<path id="borderBase" d="M10 0 L10 300 L40 340 L40 900" stroke="royalblue" stroke-width="3" opacity="0.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="borderProgress" d="M10 0 L10 300 L40 340 L40 900" stroke="royalblue" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0" stroke-dashoffset="0"/>
+<defs>
+  <linearGradient id="borderStrokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#06b6d4"/>
+    <stop offset="50%" stop-color="#06b6d5"/>
+    <stop offset="100%" stop-color="#ec4899"/>
+  </linearGradient>
+</defs>
+<path id="borderBase" d="M10 0 L10 300 L40 340 L40 900" stroke="#06b6d4" stroke-width="3" opacity="0.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="borderProgress" d="M10 0 L10 300 L40 340 L40 900" stroke="url(#borderStrokeGrad)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0" stroke-dashoffset="0"/>
 </svg>
 
 <section class="hero fade-in" id="home">
@@ -137,7 +164,7 @@ Check out my skills and future projects below!
 </section>
 
 <section class="about fade-in" id="about">
-<h2 style="color: rgba(27,70,190,0.765); text-align:center; margin-bottom:20px;">About Me</h2>
+<h2 class="section-heading" style="text-align:center; margin-bottom:20px;">About Me</h2>
 <div class="about-content" style="max-width:800px;margin:auto;text-align:center;line-height:1.7;font-size:18px;color:#ccc;">
 <p>Hi, I’m <strong style="color:rgba(122,137,179,0.9);">Kethan</strong>, a passionate and dedicated 
 <strong style="color:rgba(129,144,186,0.9);">Web Developer</strong> who loves building clean, 
@@ -146,7 +173,7 @@ modern, and responsive user interfaces. Currently pursuing <strong style="color:
 </section>
 
 <section class="skills fade-in" id="skills">
-<h2 style="color: rgba(27,70,190,0.765);">Skills</h2>
+<h2 class="section-heading"">Skills</h2>
 <div class="skill-list">
 <div class="skill"><i class="devicon-html5-plain colored"></i> HTML5</div>
 <div class="skill"><i class="devicon-css3-plain colored"></i> CSS3</div>
@@ -165,7 +192,7 @@ modern, and responsive user interfaces. Currently pursuing <strong style="color:
 </section>
 
 <section class="projects fade-in" id="projects">
-<h2 style="text-align:center;color: rgba(27,70,190,0.765);">Projects</h2>
+<h2 class="section-heading" style="text-align:center;">Projects</h2>
 <div class="project-box">
 <h3 style="color: rgba(122,137,180,0.9);margin-bottom:10px;">My Portfolio Website</h3>
 <p>This is my first personal portfolio website, built using HTML, CSS, and JavaScript. It includes animations, dark/light mode, responsive design, and smooth UI effects.</p>
@@ -176,7 +203,7 @@ modern, and responsive user interfaces. Currently pursuing <strong style="color:
 </section>
 
 <section class="contact fade-in" id="contact">
-<h2 style="color: rgba(27,70,190,0.765);">Contact Me</h2>
+<h2 class="section-heading">Contact Me</h2>
 <form id="contact-form">
 <input type="text" name="name" placeholder="Your Name" required/>
 <input type="email" name="email" placeholder="Your Email" required/>
