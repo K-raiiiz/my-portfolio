@@ -28,9 +28,29 @@ header nav a.active::after{width:100%;}
 /* ---------- Sections ---------- */
 .hero{min-height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:clamp(60px,10vw,120px) 20px clamp(40px,5vw,60px);}
 .profile-img{width:clamp(120px,30vw,180px);height:clamp(120px,30vw,180px);border-radius:50%;object-fit:cover;border:3px solid #58a6ff;box-shadow:0 0 15px rgba(88,166,255,0.3);filter:brightness(0.9) contrast(1.1);margin-bottom:20px;}
-.typing-text{font-size:clamp(24px,6vw,40px);white-space:nowrap;border-right:3px solid royalblue;width:0ch;overflow:hidden;animation:typing 4s steps(30) forwards,blink .7s infinite;color:royalblue !important;}
-@keyframes typing{from{width:0ch;}to{width:var(--text-length);}}
-@keyframes blink{50%{border-color:transparent;}}
+.typing-text {
+  position: relative;
+  display: inline-block;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 2px solid #58a6ff; /* cursor */
+  color: #3e74d2;                  /* your desired text color */
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 auto;
+}
+.typing-text::after {
+  content: "";
+  position: absolute;
+  right: -3px;       /* cursor just after the text */
+  top: 0;
+  width: 2px;
+  height: 1em;       /* ALWAYS one line tall */
+  background: #58a6ff;
+}
+.hero-text{
+  text-align: center !important;
+}
 .fade-in{opacity:0;transform:translateY(20px);transition:opacity .8s ease-out,transform .8s ease-out;}
 .show{opacity:1;transform:translateY(0);}
 .skills,.projects,.contact,.about{padding:clamp(40px,8vw,80px) 20px;text-align:center;}
@@ -67,6 +87,7 @@ body.light-mode .footer-options i{color:#333 !important;}
     padding: 40px 20px;
     text-align: center;
     position: relative;
+    
 }
 .profile-img {
     width: 180px;
@@ -93,11 +114,11 @@ body.light-mode .footer-options i{color:#333 !important;}
   padding: 15px 20px;
   border-radius: 10px;
   border: 1px solid #30363d;
-  font-size: 16px;
+  font-size: 15.5px;
   color: #fff;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
 }
 
 body.light-mode .contact-item {
@@ -117,12 +138,37 @@ body.light-mode .contact-item {
 }
 /* ---------- Responsive ---------- */
 @media(max-width:768px){
+  .hero {
+    padding-top: 60px;
+    padding-bottom: 30px;
+    margin-left: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+  .hero-text {
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+    text-align: center !important; /* center paragraph on mobile */
+     }
+    .hero-text h1 {
+        font-size: 28px !important;
+        line-height: 1.2 !important;
+    }
+    .hero-text p {
+        font-size: 16px !important;
+    }
+   .typing-text {
+        font-size: 20px !important;
+        white-space: normal; /* allow wrapping */
+        width: 100% !important; /* prevent overflow */
+        padding-bottom: 5px;
+    }
    nav {
     display: flex; 
     align-items: end;
   }
   #mode-toggle{
-    margin-left: 200px;
+    margin-left: 198px;
   }
   nav a {
     display: none;  /* hide nav links only */
@@ -130,7 +176,7 @@ body.light-mode .contact-item {
   .hamburger{display:flex;}
   body{padding-left:15px;padding-top:0;}
   
-  .side-border{width:40px;left: 13px;} /* you can also add left:5px; if needed */
+  .side-border{width:40px;left: 7px;} /* you can also add left:5px; if needed */
   
   .footer-options{gap:40px;padding:12px 23px;}
   /* Add more space from border */
@@ -141,14 +187,14 @@ body.light-mode .contact-item {
   .profile-img{width:clamp(100px,35vw,140px);height:clamp(100px,35vw,140px);}
   .skill-list{gap:10px;}
   .project-box{width:95%;padding:15px;}
-  .about-content{font-size:16px;line-height:1.6;}
+  .about-content{font-size:13px;line-height:1.6;}
   /* Mobile view: stack vertically with form first */
   .contact {
     flex-direction: column;
   }
   .contact-extra {
     order: 2; /* show below form */
-    width: 50%;
+    width: 51%;
   }
   #contact-form {
     order: 1; /* form first */
@@ -159,6 +205,9 @@ body.light-mode .contact-item {
   }
 }
 @media (min-width: 900px) {
+  .about-content p{
+    font-size:21px;
+  }
      .hero {
         height: 100vh;
         display: flex;
@@ -177,11 +226,11 @@ body.light-mode .contact-item {
     }
     /* LIGHT mode background */
     body.light-mode .hero {
-        background-image: url("assets/Gradient-whitebg-img.png");
+        background-image: url("assets/Gradient-whitebg-img.jpg");
     }
     /* DARK mode background */
     body.dark-mode .hero {
-        background-image: url("assets/Gradient-blackbg-img.png");
+        background-image: url("assets/Gradient-blackbg-img.jpg");
     }
     /* Hide the old profile photo on desktop */
     .profile-img {
@@ -196,6 +245,11 @@ body.light-mode .contact-item {
 .contact-extra {
   flex: 0 1 250px; /* fixed-ish width, can shrink */
 }
+.typing-text{
+  font-size: 2.5vw;
+}
+.hero-text p {
+    font-size: 1.5vw;
 }
 body.light-mode .hero-text p {
     color: #000; /* black text in light mode */
@@ -282,7 +336,7 @@ section{scroll-margin-top:60px;}
 <h1 class="typing-text">Hi, I'm a Web Developer</h1>
 <p style="margin-top:20px; max-width:650px; text-align:center;">
 This is my first portfolio website.<br>
-I'm learning web development and exploring new technologies every day.<br>
+I'm learning web development and exploring new technologies every day.
 Check out my skills and future projects below!
 </p>
 </div>
@@ -329,10 +383,10 @@ modern, and responsive user interfaces. Currently pursuing <strong style="color:
     <!-- Extra contact info -->
     <div class="contact-extra">
       <div class="contact-item">
-       <i class='bx bx-phone-call'></i> +91 7483349788
+       <i class='bx bx-phone-call'></i>+91 7483349788
       </div>
       <div class="contact-item">
-       <i class='bx bx-envelope'></i> kethanraii@gmail.com
+       <i class='bx bx-envelope'></i>kethanraii@gmail.com
       </div>
     </div>
     <!-- Contact form -->
@@ -391,18 +445,26 @@ const words = [
   "Welcome to My Portfolio",
   "Let's Build Something Awesome!"
 ];
+
 let wordIndex = 0;
-function typeEffect() {
-  const text = words[wordIndex];
-  typingText.textContent = text;
-  typingText.style.setProperty('--text-length', text.length + 'ch');
-  typingText.style.animation = 'none';
-  void typingText.offsetWidth; // restart animation
-  typingText.style.animation = `typing 4s steps(${text.length}) forwards, blink .7s infinite`;
-  wordIndex = (wordIndex + 1) % words.length;
+let charIndex = 0;
+
+function typeWord() {
+  const currentWord = words[wordIndex];
+  if (charIndex <= currentWord.length) {
+    typingText.textContent = currentWord.slice(0, charIndex); // add one char
+    charIndex++;
+    setTimeout(typeWord, 100); // typing speed (ms per char)
+  } else {
+    setTimeout(() => {
+      charIndex = 0;
+      wordIndex = (wordIndex + 1) % words.length;
+      typeWord(); // start next word
+    }, 1500); // pause before next word
+  }
 }
-setInterval(typeEffect, 4500);
-typeEffect();
+// start typing
+typeWord();
 // ---------- EmailJS form ----------
 emailjs.init("xW_RXOvw4CNSwplHq");
 document.getElementById('contact-form')?.addEventListener('submit', function(e) {
