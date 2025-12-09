@@ -6,12 +6,12 @@
 <title>Kethan-Portfolio</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <style>
 /* ---------- Base ---------- */
 html{scroll-behavior:smooth;}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{color:#fff;background:radial-gradient(circle at 20% 20%,#0d1224,#000);overflow-x:hidden;transition:background 0.3s,color 0.3s;}
-
 /* ---------- Header / Nav ---------- */
 header{width:100%;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;left:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);z-index:1000;}
 header h1{font-size:clamp(18px,4vw,24px);margin-right:24px;}
@@ -20,13 +20,11 @@ nav a{text-decoration:none;color:#58a6ff;font-size:clamp(14px,3vw,18px);position
 nav a:hover{color:#1f6feb;}
 header nav a::after{content:"";position:absolute;left:0;bottom:0;height:2.5px;width:0;background:royalblue;border-radius:4px;transition:width 0.35s ease;}
 header nav a.active::after{width:100%;}
-
 /* ---------- Mobile menu ---------- */
 .hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px;}
 .hamburger span{width:28px;height:3px;background:#58a6ff;border-radius:5px;transition:0.3s;}
 .mobile-menu{display:none;flex-direction:column;position:absolute;top:60px;right:20px;background:#000000cc;padding:20px;border-radius:10px;gap:15px;}
 .mobile-menu a{color:#58a6ff;text-decoration:none;font-size:18px;}
-
 /* ---------- Sections ---------- */
 .hero{min-height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:clamp(60px,10vw,120px) 20px clamp(40px,5vw,60px);}
 .profile-img{width:clamp(120px,30vw,180px);height:clamp(120px,30vw,180px);border-radius:50%;object-fit:cover;border:3px solid #58a6ff;box-shadow:0 0 15px rgba(88,166,255,0.3);filter:brightness(0.9) contrast(1.1);margin-bottom:20px;}
@@ -34,17 +32,6 @@ header nav a.active::after{width:100%;}
 @keyframes typing{from{width:0ch;}to{width:var(--text-length);}}
 @keyframes blink{50%{border-color:transparent;}}
 .fade-in{opacity:0;transform:translateY(20px);transition:opacity .8s ease-out,transform .8s ease-out;}
-/* FORCE section heading gradient - overrides inline styles */
-h2{
-  background:linear-gradient(135deg,#06b6d4 0%,#ec4899 100%) !important;
-  -webkit-background-clip:text !important;
-  -webkit-text-fill-color:transparent !important;
-  background-clip:text !important;
-  color:transparent !important;
-  font-weight:700 !important;
-  text-align:center !important;
-  margin-bottom:20px !important;
-}
 .show{opacity:1;transform:translateY(0);}
 .skills,.projects,.contact,.about{padding:clamp(40px,8vw,80px) 20px;text-align:center;}
 .skill-list{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:20px;margin-left:6px;}
@@ -55,7 +42,6 @@ form{max-width:490px;margin:auto;display:flex;flex-direction:column;gap:15px;mar
 form input,form textarea{padding:12px;border-radius:8px;border:1px solid #333;background:#000;color:#fff;width:100%;}
 form button{padding:12px;border-radius:8px;background:#58a6ff;border:none;color:#000;font-weight:bold;cursor:pointer;}
 #sbmtbtn:hover{background-color:rgba(27,70,190,0.765);}
-
 /* ---------- Footer / Social icons ---------- */
 .footer-options-wrapper{display:flex;justify-content:center;margin-top:40px;padding:20px 10px;}
 .footer-options{display:flex;align-items:center;gap:30px;padding:10px 25px;border-radius:50px;background:#181818;box-shadow:0 4px 12px rgba(0,0,0,0.25);flex-wrap:wrap;justify-content:center;}
@@ -63,7 +49,6 @@ form button{padding:12px;border-radius:8px;background:#58a6ff;border:none;color:
 .footer-options i:hover{transform:scale(1.2);}
 .footer-options a[href*="instagram"] i{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 #mode-toggle{background:transparent;border:none;cursor:pointer;font-size:18px;}
-
 /* ---------- Light/Dark mode ---------- */
 body.light-mode{background:#f9f9f9 !important;color:#000 !important;transition:background 0.3s,color 0.3s;}
 body.light-mode header{background:rgba(255,255,255,0.8)!important;color:#000 !important;}
@@ -73,12 +58,63 @@ body.light-mode .about,body.light-mode .about h2,body.light-mode .about p{color:
 body.light-mode .skill,.light-mode .project-box,.light-mode form input,.light-mode form textarea{background:#fff !important;color:#000 !important;border-color:#ccc !important;}
 body.light-mode .footer-options{background:#eee !important;}
 body.light-mode .footer-options i{color:#333 !important;}
-
 /* ---------- Side SVG border ---------- */
 .side-border{position:fixed;left:0;top:0;height:100vh;z-index:0;pointer-events:none;width:65px;}
 #borderBase{filter:drop-shadow(0 0 4px royalblue);opacity:0.35;}
 #borderProgress{filter:drop-shadow(0 0 8px royalblue) drop-shadow(0 0 16px royalblue);transition:stroke 0.3s ease,filter 0.3s ease;}
+/* Default: Mobile view stays SAME */
+.hero {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+}
+.profile-img {
+    width: 180px;
+    border-radius: 50%;
+}
+/* ---------- Contact Section Extra Info ---------- */
+.contact-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+  max-width: 1000px;
+  margin: auto;
+}
+.contact-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 220px;
+}
+.contact-item {
+  background: #161b22;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 1px solid #30363d;
+  font-size: 16px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+body.light-mode .contact-item {
+  background: #fff;
+  border-color: #ccc;
+  color: #000;
+}
+.contact-item i {
+  font-size: 24px;
+  margin-right: 12px;
+  color: #06b6d4;
+  transition: transform 0.3s ease;
+}
+.contact-item i:hover {
+  transform: scale(1.2);
+  color: #ec4899;
+}
 /* ---------- Responsive ---------- */
 @media(max-width:768px){
    nav {
@@ -97,7 +133,6 @@ body.light-mode .footer-options i{color:#333 !important;}
   .side-border{width:40px;left: 13px;} /* you can also add left:5px; if needed */
   
   .footer-options{gap:40px;padding:12px 23px;}
-  
   /* Add more space from border */
   .hero{padding-top:60px;padding-bottom:30px;margin-left:0;padding-left:35px;padding-right:15px;}
   .about{margin-left:0;padding:20px 35px 30px;}
@@ -107,6 +142,63 @@ body.light-mode .footer-options i{color:#333 !important;}
   .skill-list{gap:10px;}
   .project-box{width:95%;padding:15px;}
   .about-content{font-size:16px;line-height:1.6;}
+  /* Mobile view: stack vertically with form first */
+  .contact {
+    flex-direction: column;
+  }
+  .contact-extra {
+    order: 2; /* show below form */
+    width: 50%;
+  }
+  #contact-form {
+    order: 1; /* form first */
+  }
+  .contact #contact-form {
+    width: 95%;
+    max-width: 100%;
+  }
+}
+@media (min-width: 900px) {
+     .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;      /* vertically centers content */
+        justify-content: flex-end; /* pushes text to right */
+        padding: 0 80px;
+        text-align: left;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .hero-text {
+        max-width: 500px;
+        z-index: 10;
+        color: #fff; /* dark mode text */
+    }
+    /* LIGHT mode background */
+    body.light-mode .hero {
+        background-image: url("assets/Gradient-whitebg-img.png");
+    }
+    /* DARK mode background */
+    body.dark-mode .hero {
+        background-image: url("assets/Gradient-blackbg-img.png");
+    }
+    /* Hide the old profile photo on desktop */
+    .profile-img {
+        display: none;
+    }
+    /* Make contact form wider on desktop */
+.contact #contact-form {
+  flex: 1 1 500px; /* grow, shrink, minimum 500px */
+  max-width: 600px; /* optional max-width */
+}
+/* Optional: adjust extra info width so it stays nice on desktop */
+.contact-extra {
+  flex: 0 1 250px; /* fixed-ish width, can shrink */
+}
+}
+body.light-mode .hero-text p {
+    color: #000; /* black text in light mode */
 }
 /* Section headings - CHANGE COLORS HERE */
 .section-heading{
@@ -116,6 +208,39 @@ body.light-mode .footer-options i{color:#333 !important;}
   background-clip:text;
   font-weight:700;
   text-align:center;
+}
+.section-heading {
+  position: relative;
+  display: inline-block; /* ensures underline fits width of text */
+  padding-bottom: 8px; /* space above underline */
+}
+.section-heading::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 85%; /* underline width (customizable) */
+  height: 3px;
+  border-radius: 5px;
+  background: linear-gradient(135deg,#06b6d4 0%,#ec4899 100%);
+}
+.hero-text {
+    max-width: 500px;
+    margin-left: auto; 
+    margin-bottom: 17%;     /* pushes text to the right */
+    position: relative;
+    z-index: 10;            /* ensures text is above the background */
+    text-align: left;
+    color: #fff;            /* optional, ensures text visible on image */
+}
+.hero-text h1 {
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6); /* improve readability */
+}
+.hero-text p {
+    margin-top: 20px;
+    line-height: 1.6;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
 }
 section{scroll-margin-top:60px;}
 </style>
@@ -140,7 +265,6 @@ section{scroll-margin-top:60px;}
 <a onclick="toggleMenu()" href="#contact">Contact</a>
 </div>
 </header>
-
 <svg class="side-border" width="65" height="100%" viewBox="0 0 80 1000" preserveAspectRatio="none" aria-hidden="true">
 <defs>
   <linearGradient id="borderStrokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -152,17 +276,17 @@ section{scroll-margin-top:60px;}
 <path id="borderBase" d="M10 0 L10 300 L40 340 L40 900" stroke="#06b6d4" stroke-width="3" opacity="0.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 <path id="borderProgress" d="M10 0 L10 300 L40 340 L40 900" stroke="url(#borderStrokeGrad)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0" stroke-dashoffset="0"/>
 </svg>
-
 <section class="hero fade-in" id="home">
-<img loading="lazy" src="assets/profile.jpg" class="profile-img" alt="Profile"/>
+<img loading="lazy" src="assets/profile-img.jpg" class="profile-img" alt="Profile"/>
+<div class="hero-text">
 <h1 class="typing-text">Hi, I'm a Web Developer</h1>
 <p style="margin-top:20px; max-width:650px; text-align:center;">
 This is my first portfolio website.<br>
 I'm learning web development and exploring new technologies every day.<br>
 Check out my skills and future projects below!
 </p>
+</div>
 </section>
-
 <section class="about fade-in" id="about">
 <h2 class="section-heading" style="text-align:center; margin-bottom:20px;">About Me</h2>
 <div class="about-content" style="max-width:800px;margin:auto;text-align:center;line-height:1.7;font-size:18px;color:#ccc;">
@@ -171,7 +295,6 @@ Check out my skills and future projects below!
 modern, and responsive user interfaces. Currently pursuing <strong style="color:rgba(137,151,189,0.9);">BCA</strong> at Mangalore University. I enjoy watching anime and building websites. Constantly improving in HTML, CSS, JavaScript, and modern frameworks.</p>
 </div>
 </section>
-
 <section class="skills fade-in" id="skills">
 <h2 class="section-heading"">Skills</h2>
 <div class="skill-list">
@@ -190,7 +313,6 @@ modern, and responsive user interfaces. Currently pursuing <strong style="color:
 <div class="skill"><i class="devicon-github-original"></i> GitHub</div>
 </div>
 </section>
-
 <section class="projects fade-in" id="projects">
 <h2 class="section-heading" style="text-align:center;">Projects</h2>
 <div class="project-box">
@@ -201,28 +323,36 @@ modern, and responsive user interfaces. Currently pursuing <strong style="color:
 <p>I am currently working on my first projects. Stay tuned for future updates!</p>
 </div>
 </section>
-
 <section class="contact fade-in" id="contact">
-<h2 class="section-heading">Contact Me</h2>
-<form id="contact-form">
-<input type="text" name="name" placeholder="Your Name" required/>
-<input type="email" name="email" placeholder="Your Email" required/>
-<textarea name="message" placeholder="Your Message" required></textarea>
-<button id="sbmtbtn" type="submit">Send Message</button>
-</form>
+  <h2 class="section-heading">Contact Me</h2>
+  <div class="contact-container">
+    <!-- Extra contact info -->
+    <div class="contact-extra">
+      <div class="contact-item">
+       <i class='bx bx-phone-call'></i> +91 7483349788
+      </div>
+      <div class="contact-item">
+       <i class='bx bx-envelope'></i> kethanraii@gmail.com
+      </div>
+    </div>
+    <!-- Contact form -->
+    <form id="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required/>
+      <input type="email" name="email" placeholder="Your Email" required/>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button id="sbmtbtn" type="submit">Send Message</button>
+    </form>
+  </div>
 </section>
-
 <div class="footer-options-wrapper">
 <div class="footer-options">
 <a href="https://instagram.com/_kethann_raii_" target="_blank"><i class="fab fa-instagram"></i></a>
 <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
 <a href="https://github.com/K-raii" target="_blank"><i class="fab fa-github"></i></a>
 <a href="https://t.me/KethanRai" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-
 </div>
 </div>
 <div class="footer" style="text-align:center;padding-bottom:30px;">© 2025 Kethanraii. All Rights Reserved.</div>
-
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
 // ---------- Mobile menu toggle ----------
@@ -230,7 +360,6 @@ function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
 }
-
 // ---------- Fade-in intersection observer ----------
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -238,11 +367,9 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.18 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
 // ---------- Theme toggle ----------
 const toggleBtn = document.getElementById('mode-toggle');
 const modeIcon = toggleBtn.querySelector('i');
-
 function setTheme(mode) {
   document.body.classList.toggle('light-mode', mode === 'light');
   document.body.classList.toggle('dark-mode', mode !== 'light');
@@ -252,13 +379,10 @@ function setTheme(mode) {
   toggleBtn.style.color = mode === 'light' ? "#f39c12" : "#58a6ff";
   localStorage.setItem('theme', mode);
 }
-
 toggleBtn.addEventListener('click', () => {
   setTheme(document.body.classList.contains('light-mode') ? 'dark' : 'light');
 });
-
 window.addEventListener('load', () => setTheme(localStorage.getItem('theme') || 'dark'));
-
 // ---------- Typing effect ----------
 const typingText = document.querySelector('.typing-text');
 const words = [
@@ -268,7 +392,6 @@ const words = [
   "Let's Build Something Awesome!"
 ];
 let wordIndex = 0;
-
 function typeEffect() {
   const text = words[wordIndex];
   typingText.textContent = text;
@@ -278,13 +401,10 @@ function typeEffect() {
   typingText.style.animation = `typing 4s steps(${text.length}) forwards, blink .7s infinite`;
   wordIndex = (wordIndex + 1) % words.length;
 }
-
 setInterval(typeEffect, 4500);
 typeEffect();
-
 // ---------- EmailJS form ----------
 emailjs.init("xW_RXOvw4CNSwplHq");
-
 document.getElementById('contact-form')?.addEventListener('submit', function(e) {
   e.preventDefault();
   emailjs.sendForm("service_gxobbym", "template_40jhf2w", this)
@@ -297,26 +417,21 @@ document.getElementById('contact-form')?.addEventListener('submit', function(e) 
       console.error(err);
     });
 });
-
 // ---------- Side border progress ----------
 const borderProgress = document.getElementById('borderProgress');
 const lastSection = document.querySelector('#contact');
 let pathLen = 0;
-
 function setupBorder() {
   if (!borderProgress) return;
   pathLen = borderProgress.getTotalLength();
   borderProgress.style.strokeDasharray = pathLen;
   borderProgress.style.strokeDashoffset = pathLen;
 }
-
 window.addEventListener('load', setupBorder);
 window.addEventListener('resize', setupBorder);
-
 function clamp(v, min, max) {
   return Math.max(min, Math.min(max, v));
 }
-
 function updateBorder() {
   if (!borderProgress || !lastSection) return;
   const scrollTop = window.scrollY;
@@ -325,13 +440,10 @@ function updateBorder() {
   const percent = clamp(scrollTop / (maxScroll || 1), 0, 1);
   borderProgress.style.strokeDashoffset = pathLen * (1 - percent);
 }
-
 window.addEventListener('scroll', updateBorder, { passive: true });
 updateBorder();
-
 // ---------- Nav underline behavior ----------
 const navItems = document.querySelectorAll('header nav a');
-
 navItems.forEach(link => {
   link.addEventListener('click', () => {
     navItems.forEach(i => i.classList.remove('active'));
