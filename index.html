@@ -36,13 +36,17 @@
       backdrop-filter: blur(10px);
       z-index: 1000;
     }
-    header h1 { font-size: clamp(18px, 4vw, 24px); margin-right: 24px; }
+    header h1 { font-size: clamp(18px, 4vw, 24px); margin-right: 24px;font-weight: 700;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: opacity .3s ease; }
     nav { display: flex; gap: 60px; align-items: center; }
     nav a {
-      text-decoration: none; color: #58a6ff; font-size: clamp(14px,3vw,18px);
+      text-decoration: none; color: #75aff1; font-size: clamp(14px,3vw,18px);
       position: relative; padding-bottom: 6px;
     }
-    nav a:hover { color: #1f6feb; }
+    nav a:hover { color: #3e79d2; }
     header nav a::after {
       content: "";
       position: absolute; left: 0; bottom: 0;
@@ -314,7 +318,8 @@
       .skill-list { gap: 10px; margin-left: 0; padding: 0; }
       .skill { font-size: 14px; padding: 10px 15px; }
       .project-box { width: 100%; padding: 15px; margin: 10px 0; }
-      .about-content { font-size: 14px; line-height: 1.6; padding: 0; }
+      .about-content { font-size: 13px; line-height: 1.6; padding: 0; }
+      .about-content p{font-size: 13px;}
       .contact-container { width: 100%; gap: 20px; flex-direction: column; }
       .contact-extra { order: 2; width: 100%; }
       #contact-form { order: 1; width: 100%; }
@@ -368,6 +373,62 @@
       body.light-mode .hero-text p { color: #000; }
       section { scroll-margin-top: 60px; }
     }
+    .mode-btn {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--toggle-bg, #222);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+/* Icons wrapper */
+.icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Modern Sun Icon */
+.sun-icon {
+  background: radial-gradient(circle at center,
+    #ffd057 43%, 
+    #ffb300 97%
+  );
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ffcc4d;
+}
+
+/* Modern Moon Icon */
+.moon-icon {
+  background: radial-gradient(circle at 30% 30%,
+    #ffffff 40%,
+    #cfd2d7 100%
+  );
+  border-radius: 50%;
+  box-shadow: inset -5px -3px 0px rgba(0,0,0,0.2);
+}
+
+/* Light Mode: Show moon */
+.light-mode .moon-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Dark Mode: Show sun */
+.dark-mode .sun-icon {
+  opacity: 1;
+  transform: scale(1);
+}
   </style>
 </head>
 <body>
@@ -381,7 +442,11 @@
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
-      <button id="mode-toggle"><i class="fas fa-moon"></i></button>
+      <button id="mode-toggle" class="mode-btn">
+        <span class="icon sun-icon"></span>
+        <span class="icon moon-icon"></span>
+      </button>
+
     </nav>
 
     <div class="hamburger" onclick="toggleMenu()">
@@ -545,26 +610,26 @@
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 
-    const toggleBtn = document.getElementById('mode-toggle');
-    const modeIcon = toggleBtn.querySelector('i');
-    function setTheme(mode) {
-      document.body.classList.toggle('light-mode', mode === 'light');
-      document.body.classList.toggle('dark-mode', mode !== 'light');
+   const toggleBtn = document.getElementById('mode-toggle');
 
-      modeIcon.classList.replace(mode === 'light' ? 'fa-sun' : 'fa-moon', mode === 'light' ? 'fa-moon' : 'fa-sun');
-      modeIcon.style.color = mode === 'light' ? "#f39c12" : "#f39c12";
-      toggleBtn.style.border = "none";
-      toggleBtn.style.outline = "none";
-      toggleBtn.style.color = mode === 'light' ? "#f39c12" : "#58a6ff";
+function setTheme(mode) {
+  document.body.classList.toggle('light-mode', mode === 'light');
+  document.body.classList.toggle('dark-mode', mode !== 'light');
 
-      localStorage.setItem('theme', mode);
-    }
+  // Make button visually match theme
+  toggleBtn.style.outline = "none";
+  toggleBtn.style.border = "none";
+  toggleBtn.style.background = mode === "light" ? "#f0f0f0" : "#1e1e1e";
 
-    toggleBtn.addEventListener('click', () => {
-      setTheme(document.body.classList.contains('light-mode') ? 'dark' : 'light');
-    });
+  localStorage.setItem('theme', mode);
+}
 
-    window.addEventListener('load', () => setTheme(localStorage.getItem('theme') || 'dark'));
+toggleBtn.addEventListener('click', () => {
+  setTheme(document.body.classList.contains('light-mode') ? 'dark' : 'light');
+});
+
+window.addEventListener('load', () => setTheme(localStorage.getItem('theme') || 'dark'));
+
 
 
     const typingText = document.querySelector('.typing-text');
@@ -676,7 +741,6 @@
         }
       }
     });
-
   </script>
 </body>
 </html>
