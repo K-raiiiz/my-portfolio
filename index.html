@@ -19,7 +19,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
     body {
       color: #fff;
-      background: radial-gradient(circle at 20% 20%, #0d1224, #000);
+      background:#080a15;
       overflow-x: hidden;
       transition: background 0.3s, color 0.3s;
       width: 100%;
@@ -73,6 +73,48 @@
     .mobile-menu a {
       color: #58a6ff; text-decoration: none; font-size: 18px;
     }
+/* ---------- Fade-in animation ---------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ---------- Hover scale for content divs ---------- */
+.skill,
+.project-box,
+.contact-item,
+.about-content {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
+}
+
+/* Hover only on devices that support hover */
+@media (hover: hover) {
+  .skill:hover,
+  .project-box:hover,
+  .contact-item:hover,
+  .about-content:hover {
+    transform: scale(1.06);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  }
+}
+/* ---------- Submit button hover scale ---------- */
+button[type="submit"] {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
+}
+
+/* Hover only on devices that support hover */
+@media (hover: hover) {
+  button[type="submit"]:hover {
+    transform: scale(1.06);
+  }
+}
 
     /* ---------- Hero Section ---------- */
     .hero {
@@ -116,10 +158,6 @@
 
     .hero-text { text-align: center; width: 100%; }
 
-    /* Animation */
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .8s, transform .8s; }
-    .show { opacity: 1; transform: translateY(0); }
-
     /* ---------- Skills / Projects / Contact ---------- */
     .skills, .projects, .contact, .about {
       padding: clamp(40px,8vw,80px) 20px; text-align: center;
@@ -148,7 +186,7 @@
       width: 90%; max-width: 600px;
       margin: 15px auto;
       border: 1px solid #30363d;
-      color: #ccc;
+      color: #7d8ab2;
     }
 
     form {
@@ -171,7 +209,7 @@
       color: #000; font-weight: bold;
       cursor: pointer;
     }
-    #sbmtbtn:hover { background-color: rgba(27,70,190,0.765); }
+    #sbmtbtn:hover { background-color: rgba(47, 117, 216, 0.765); }
 
     /* ---------- Footer ---------- */
     .footer-options-wrapper {
@@ -189,7 +227,7 @@
       font-size: 20px; color: #fff;
       transition: transform .3s, color .3s;
     }
-    .footer-options i:hover { transform: scale(1.2); }
+    .footer-options i:hover { transform: scale(1.4); }
 
     .footer-options a[href*="instagram"] i {
       background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
@@ -323,7 +361,7 @@
       .contact-container { width: 100%; gap: 20px; flex-direction: column; }
       .contact-extra { order: 2; width: 100%; }
       #contact-form { order: 1; width: 100%; }
-      .contact-item { font-size: 13px; padding: 12px 15px; width: 100%; }
+      .contact-item { font-size: 13px; padding: 12px 15px; width: 92%;margin-left: 14px; }
       .section-heading { font-size: 24px; }
       .footer-options-wrapper { width: 100%; padding: 20px 10px; }
       .footer-options { gap: 25px; padding: 10px 20px; }
@@ -354,10 +392,10 @@
         text-align: left;
       }
       body.light-mode .hero {
-        background-image: url("assets/Gradient-whitebg-img.png");
+        background-image: url("assets/Gradient-whitebg-img.webp");
       }
       body.dark-mode .hero {
-        background-image: url("assets/Gradient-blackbg-img.png");
+        background-image: url("assets/Gradient-blackbg-img.webp");
       }
       .profile-img { display: none; }
       .contact #contact-form { flex: 1 1 500px; max-width: 600px; }
@@ -429,6 +467,11 @@
   opacity: 1;
   transform: scale(1);
 }
+    .light-mode .project-box {
+  background: #fff !important;
+  color: #7686b7!important;   /* ❌ overrides project text */
+}
+
 /* -------- Loader -------- */
 #page-loader {
   position: fixed;
@@ -542,7 +585,7 @@ body.light-mode #page-loader {
     <img loading="lazy" src="assets/profile-img.jpg" class="profile-img" alt="Profile" />
     <div class="hero-text">
       <h1 class="typing-text">Hi, I'm a Web Developer</h1>
-      <p style="margin-top:20px; max-width:650px; text-align:center;">
+      <p style="margin-top:20px; max-width:650px; text-align:center;" class="fade-in">
         This is my first portfolio website.<br>
         I'm learning web development and exploring new technologies every day.
         Check out my skills and future projects below!
@@ -553,9 +596,9 @@ body.light-mode #page-loader {
 
   <!-- About -->
   <section class="about fade-in" id="about">
-    <h2 class="section-heading" style="margin-bottom:20px;">About Me</h2>
+    <h2 class="section-heading fade-in" style="margin-bottom:20px;">About Me</h2>
     <div class="about-content" style="max-width:800px;margin:auto;text-align:center;line-height:1.7;font-size:18px;color:#ccc;">
-      <p>
+      <p class="fade-in>
         Hi, I'm <strong style="color:rgba(122,137,179,0.9);">Kethan</strong>, a passionate and dedicated
         <strong style="color:rgba(129,144,186,0.9);">Web Developer</strong> who loves building clean,
         modern, and responsive user interfaces. Currently pursuing
@@ -568,7 +611,7 @@ body.light-mode #page-loader {
 
   <!-- Skills -->
   <section class="skills fade-in" id="skills">
-    <h2 class="section-heading">Skills</h2>
+    <h2 class="section-heading fade-in">Skills</h2>
     <div class="skill-list">
       <div class="skill"><i class="devicon-html5-plain colored"></i> HTML5</div>
       <div class="skill"><i class="devicon-css3-plain colored"></i> CSS3</div>
@@ -578,8 +621,6 @@ body.light-mode #page-loader {
       <div class="skill"><i class="devicon-nodejs-plain-wordmark colored"></i> Node.js</div>
       <div class="skill"><i class="devicon-python-plain colored"></i> Python</div>
       <div class="skill"><i class="devicon-java-plain-wordmark colored"></i> Java</div>
-      <div class="skill"><i class="devicon-c-original"></i></div>
-      <div class="skill"><i class="devicon-csharp-plain-wordmark colored"></i> C#</div>
       <div class="skill"><i class="devicon-mysql-plain-wordmark colored"></i> MySQL</div>
       <div class="skill"><i class="devicon-git-plain colored"></i> Git</div>
       <div class="skill"><i class="devicon-github-original"></i> GitHub</div>
@@ -590,27 +631,27 @@ body.light-mode #page-loader {
   <!-- Projects -->
   <section class="projects fade-in" id="projects">
     <h2 class="section-heading">Projects</h2>
-    <div class="project-box">
-      <h3 style="color: rgba(122,137,180,0.9); margin-bottom:10px;">My Portfolio Website</h3>
-      <p> This is my first personal portfolio website, built using HTML, CSS, and JavaScript. It includes animations, dark/light mode, responsive design, and smooth UI effects.</p>
+    <div class="project-box fade-in">
+      <h3" style="color: rgba(122,137,180,0.9); margin-bottom:10px;">My Portfolio Website</h3>
+      <p"> This is my first personal portfolio website, built using HTML, CSS, and JavaScript. It includes animations, dark/light mode, responsive design, and smooth UI effects.</p>
     </div>
-    <div class="project-box">
+    <div class="project-box fade-in">
       <p>I am currently working on my first projects. Stay tuned for future updates!</p>
     </div>
   </section>
 
 
   <!-- Contact -->
-  <section class="contact fade-in" id="contact">
-    <h2 class="section-heading">Contact Me</h2>
+  <section class="contact" id="contact">
+    <h2 class="section-heading fade-in">Contact Me</h2>
 
-    <div class="contact-container">
+    <div class="contact-container fade-in">
       <div class="contact-extra">
         <div class="contact-item">
-          <i class='bx bx-phone-call'></i> +91 7483349788
+          <i class='bx bx-phone-call '></i> +91 7483349788
         </div>
         <div class="contact-item">
-          <i class='bx bx-envelope'></i> kethanraii@gmail.com
+          <i class='bx bx-envelope '></i> kethanraii@gmail.com
         </div>
       </div>
 
@@ -792,6 +833,6 @@ window.addEventListener('load', () => setTheme(localStorage.getItem('theme') || 
   // Optional delay for smoother transition
   setTimeout(() => loader.style.display = "none", 600);
 });
-  </script>
+</script>
 </body>
 </html>
